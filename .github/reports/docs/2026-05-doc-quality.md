@@ -1,14 +1,12 @@
-# Documentation Quality Report
+# Doc Quality Report
 
-_Report date: 2026-05-23_
+_Date: 2026-05-24_
 
-## README Analysis
+## README — 100/100 (good)
 
-**README score: 100/100** 🟢
+- Lines: 218
 
-- Length: 218 lines / 8,224 chars
-
-### Sections detected
+**Sections:**
 
 - AI Workflow Automation System
 - Features
@@ -30,29 +28,26 @@ _Report date: 2026-05-23_
 
 ## Docstring Coverage
 
-| Metric | Value |
-|--------|-------|
-| Functions total | 121 |
-| Documented | 4 (3%) 🔴 |
-| Classes total | 44 |
-| Documented classes | 0 (0%) |
+| | |
+|--|--|
+| Functions | 4/121 (3%) |
+| Classes | 0/44 |
 
-### Sample undocumented public functions
+**Undocumented public functions (sample):**
 
-- `backend\app\main.py::lifespan`
-- `backend\app\main.py::health_check`
-- `backend\app\agent\action_executor.py::execute_action`
-- `backend\app\agent\classifier.py::rule_classify`
-- `backend\app\agent\decision_engine.py::make_decision`
-- `backend\app\agent\extractor.py::rule_extract`
-- `backend\app\agent\pipeline.py::run_pipeline`
-- `backend\app\agent\validator.py::validate_data`
-- `backend\app\agent\validator.py::calculate_confidence`
-- `backend\app\api\routes\approvals.py::list_approvals`
+- `backend/app/main.py::lifespan`
+- `backend/app/main.py::health_check`
+- `backend/app/db/database.py::get_db`
+- `backend/app/db/database.py::init_db`
+- `backend/app/schemas/schemas.py::validate_source`
+- `backend/app/schemas/schemas.py::validate_input`
+- `backend/app/services/audit_service.py::log`
+- `backend/app/services/audit_service.py::get_process_trail`
+- `backend/app/services/ai_service.py::classify`
+- `backend/app/services/ai_service.py::extract`
 
 ## Changelog
 
-❌ No CHANGELOG file found. Consider adding one.
+No CHANGELOG file.
 
 ---
-_Documentation audit complete._
