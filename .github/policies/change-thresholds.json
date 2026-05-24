@@ -1,0 +1,12 @@
+{
+  "max_lines_changed": 200,
+  "max_files_changed": 10,
+  "min_confidence_score": 75,
+  "max_report_size_kb": 50,
+  "cooldown_hours": {
+    "health_check": 144,
+    "dep_monitor": 144,
+    "arch_snapshot": 720,
+    "doc_audit": 72
+  }
+}

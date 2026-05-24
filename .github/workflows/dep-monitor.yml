@@ -1,0 +1,57 @@
+name: Dependency Monitor
+
+on:
+  schedule:
+    # Every Wednesday at 09:43 UTC
+    - cron: '43 9 * * 3'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — report only, no commit'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  dep-audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install backend deps (for pip-audit)
+        run: pip install -r backend/requirements.txt 2>/dev/null || pip install -r requirements.txt 2>/dev/null || true
+
+      - name: Install audit tooling
+        run: pip install pip-audit 2>/dev/null || true
+
+      - name: Run dependency audit
+        run: python .github/scripts/dep_audit.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          git add .github/reports/deps/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            python .github/scripts/commit_validator.py
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit report
+        if: steps.check.outputs.changed == 'true' && !inputs.dry_run
+        run: |
+          git config user.name "felipebridge"
+          git config user.email "felibridge49@gmail.com"
+          git commit -m "chore: update dependency report [skip ci]"
+          git push

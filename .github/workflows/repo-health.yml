@@ -1,0 +1,60 @@
+name: Repository Health
+
+on:
+  schedule:
+    # Every Monday at 08:17 UTC
+    - cron: '17 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — generate report without committing'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  health:
+    name: Health check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Install optional analysis tools
+        run: |
+          pip install pip-audit 2>/dev/null || true
+
+      - name: Run health scorer
+        run: python .github/scripts/health_score.py
+
+      - name: Run metrics tracker
+        run: python .github/scripts/metrics_tracker.py
+
+      - name: Validate changes
+        id: validate
+        run: |
+          git add .github/reports/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            python .github/scripts/commit_validator.py
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit report
+        if: steps.validate.outputs.changed == 'true' && !inputs.dry_run
+        run: |
+          git config user.name "felipebridge"
+          git config user.email "felibridge49@gmail.com"
+          git commit -m "chore: refresh health metrics [skip ci]"
+          git push

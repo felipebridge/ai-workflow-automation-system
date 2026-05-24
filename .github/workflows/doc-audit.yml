@@ -1,0 +1,58 @@
+name: Documentation Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'docs/**'
+      - '*.md'
+  schedule:
+    # Every Sunday at 07:22 UTC
+    - cron: '22 7 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run — report only'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  doc-audit:
+    name: Documentation quality check
+    runs-on: ubuntu-latest
+    # Skip auto-commits triggered by this workflow
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run documentation validator
+        run: python .github/scripts/doc_validator.py
+
+      - name: Check for changes
+        id: check
+        run: |
+          git add .github/reports/docs/
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            python .github/scripts/commit_validator.py
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit report
+        if: steps.check.outputs.changed == 'true' && !inputs.dry_run
+        run: |
+          git config user.name "felipebridge"
+          git config user.email "felibridge49@gmail.com"
+          git commit -m "docs: update documentation quality report [skip ci]"
+          git push

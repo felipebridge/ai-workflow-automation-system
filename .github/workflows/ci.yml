@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
+        working-directory: .
+
+      - name: Run tests
+        run: python -m pytest backend/tests/ -v --tb=short
+        env:
+          PYTHONPATH: backend
+
+      - name: Check import health
+        run: python -c "from app.main import app; print('Import OK')"
+        working-directory: backend
+        env:
+          PYTHONPATH: .
+        continue-on-error: true

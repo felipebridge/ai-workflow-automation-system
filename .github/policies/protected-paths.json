@@ -1,0 +1,26 @@
+{
+  "exact": [
+    "backend/app/main.py",
+    "backend/app/core/config.py",
+    "backend/app/db/database.py",
+    "backend/app/db/models.py",
+    "backend/app/schemas/schemas.py",
+    "docker-compose.yml"
+  ],
+  "prefixes": [
+    "backend/app/agent/",
+    "backend/app/api/routes/",
+    "backend/app/services/",
+    "backend/app/core/",
+    "backend/alembic/",
+    "frontend/src/api/",
+    "frontend/src/components/",
+    "frontend/src/hooks/"
+  ],
+  "patterns": [
+    "\\.env$",
+    "\\.env\\..*",
+    "alembic\\.ini",
+    "migrations/.*\\.py$"
+  ]
+}

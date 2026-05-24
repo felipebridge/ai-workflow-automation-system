@@ -1,0 +1,58 @@
+name: Safe Commit (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      message:
+        required: true
+        type: string
+        description: 'Commit message'
+      paths:
+        required: false
+        type: string
+        default: '.github/reports/'
+        description: 'Paths to stage (space-separated)'
+      dry_run:
+        required: false
+        type: boolean
+        default: false
+    outputs:
+      committed:
+        description: 'Whether a commit was made'
+        value: ${{ jobs.safe-commit.outputs.committed }}
+
+permissions:
+  contents: write
+
+jobs:
+  safe-commit:
+    runs-on: ubuntu-latest
+    outputs:
+      committed: ${{ steps.commit.outputs.committed }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage changes
+        id: stage
+        run: |
+          git add ${{ inputs.paths }}
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Validate diff
+        if: steps.stage.outputs.has_changes == 'true'
+        run: python .github/scripts/commit_validator.py
+
+      - name: Commit
+        id: commit
+        if: steps.stage.outputs.has_changes == 'true' && !inputs.dry_run
+        run: |
+          git config user.name "felipebridge"
+          git config user.email "felibridge49@gmail.com"
+          git commit -m "${{ inputs.message }} [skip ci]"
+          git push
+          echo "committed=true" >> "$GITHUB_OUTPUT"
