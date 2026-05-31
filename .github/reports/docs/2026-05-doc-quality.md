@@ -1,6 +1,6 @@
 # Doc Quality Report
 
-_Date: 2026-05-24_
+_Date: 2026-05-31_
 
 ## README — 100/100 (good)
 
@@ -35,16 +35,16 @@ _Date: 2026-05-24_
 
 **Undocumented public functions (sample):**
 
-- `backend/app/main.py::lifespan`
-- `backend/app/main.py::health_check`
-- `backend/app/db/database.py::get_db`
-- `backend/app/db/database.py::init_db`
-- `backend/app/schemas/schemas.py::validate_source`
-- `backend/app/schemas/schemas.py::validate_input`
-- `backend/app/services/audit_service.py::log`
-- `backend/app/services/audit_service.py::get_process_trail`
-- `backend/app/services/ai_service.py::classify`
-- `backend/app/services/ai_service.py::extract`
+- `backend/tests/test_extractor.py::test_extracts_email`
+- `backend/tests/test_extractor.py::test_extracts_email_from_plain_text`
+- `backend/tests/test_extractor.py::test_no_email_returns_none`
+- `backend/tests/test_extractor.py::test_extracts_dollar_amount`
+- `backend/tests/test_extractor.py::test_extracts_currency`
+- `backend/tests/test_extractor.py::test_large_amount_with_commas`
+- `backend/tests/test_extractor.py::test_no_amount_returns_none`
+- `backend/tests/test_extractor.py::test_extracts_inv_number`
+- `backend/tests/test_extractor.py::test_extracts_ord_number`
+- `backend/tests/test_extractor.py::test_urgent_text_sets_high_priority`
 
 ## Changelog
 
