@@ -1,6 +1,6 @@
 # Dependency Report
 
-_Date: 2026-06-03_
+_Date: 2026-06-10_
 
 **Scanned:**
 
@@ -17,7 +17,7 @@ No known CVEs found.
 | Package | Current | Latest |
 |---------|---------|--------|
 | `sqlalchemy` | `2.0.23` | `2.0.50` |
-| `python-multipart` | `0.0.6` | `0.0.30` |
+| `python-multipart` | `0.0.6` | `0.0.32` |
 
 **Minor (review first):**
 
@@ -26,7 +26,7 @@ No known CVEs found.
 | `fastapi` | `0.104.1` | `0.136.3` |
 | `pydantic` | `2.5.0` | `2.13.4` |
 | `pydantic-settings` | `2.1.0` | `2.14.1` |
-| `anthropic` | `0.18.1` | `0.105.2` |
+| `anthropic` | `0.18.1` | `0.109.1` |
 | `python-dotenv` | `1.0.0` | `1.2.2` |
 | `httpx` | `0.25.2` | `0.28.1` |
 | `alembic` | `1.12.1` | `1.18.4` |
