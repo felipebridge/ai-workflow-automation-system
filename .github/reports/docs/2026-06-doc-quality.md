@@ -1,6 +1,6 @@
 # Doc Quality Report
 
-_Date: 2026-06-07_
+_Date: 2026-06-14_
 
 ## README — 100/100 (good)
 
@@ -35,6 +35,7 @@ _Date: 2026-06-07_
 
 **Undocumented public functions (sample):**
 
+- `backend/scripts/seed_data.py::seed`
 - `backend/tests/test_extractor.py::test_extracts_email`
 - `backend/tests/test_extractor.py::test_extracts_email_from_plain_text`
 - `backend/tests/test_extractor.py::test_no_email_returns_none`
@@ -44,7 +45,6 @@ _Date: 2026-06-07_
 - `backend/tests/test_extractor.py::test_no_amount_returns_none`
 - `backend/tests/test_extractor.py::test_extracts_inv_number`
 - `backend/tests/test_extractor.py::test_extracts_ord_number`
-- `backend/tests/test_extractor.py::test_urgent_text_sets_high_priority`
 
 ## Changelog
 
