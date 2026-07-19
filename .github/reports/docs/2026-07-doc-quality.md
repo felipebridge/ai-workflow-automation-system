@@ -1,6 +1,6 @@
 # Doc Quality Report
 
-_Date: 2026-07-12_
+_Date: 2026-07-19_
 
 ## README — 100/100 (good)
 
@@ -36,15 +36,15 @@ _Date: 2026-07-12_
 **Undocumented public functions (sample):**
 
 - `backend/scripts/seed_data.py::seed`
-- `backend/tests/test_extractor.py::test_extracts_email`
-- `backend/tests/test_extractor.py::test_extracts_email_from_plain_text`
-- `backend/tests/test_extractor.py::test_no_email_returns_none`
-- `backend/tests/test_extractor.py::test_extracts_dollar_amount`
-- `backend/tests/test_extractor.py::test_extracts_currency`
-- `backend/tests/test_extractor.py::test_large_amount_with_commas`
-- `backend/tests/test_extractor.py::test_no_amount_returns_none`
-- `backend/tests/test_extractor.py::test_extracts_inv_number`
-- `backend/tests/test_extractor.py::test_extracts_ord_number`
+- `backend/tests/test_decision_engine.py::test_high_confidence_low_risk_is_auto`
+- `backend/tests/test_decision_engine.py::test_invoice_under_threshold_is_auto`
+- `backend/tests/test_decision_engine.py::test_lead_always_auto_at_high_confidence`
+- `backend/tests/test_decision_engine.py::test_payment_request_always_requires_human`
+- `backend/tests/test_decision_engine.py::test_high_value_invoice_requires_human`
+- `backend/tests/test_decision_engine.py::test_exact_threshold_does_not_trigger`
+- `backend/tests/test_decision_engine.py::test_low_confidence_requires_human`
+- `backend/tests/test_decision_engine.py::test_medium_confidence_requires_human`
+- `backend/tests/test_decision_engine.py::test_multiple_validation_errors_require_human`
 
 ## Changelog
 
