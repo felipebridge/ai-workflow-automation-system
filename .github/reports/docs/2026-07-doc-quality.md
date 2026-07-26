@@ -1,6 +1,6 @@
 # Doc Quality Report
 
-_Date: 2026-07-19_
+_Date: 2026-07-26_
 
 ## README — 100/100 (good)
 
@@ -35,7 +35,6 @@ _Date: 2026-07-19_
 
 **Undocumented public functions (sample):**
 
-- `backend/scripts/seed_data.py::seed`
 - `backend/tests/test_decision_engine.py::test_high_confidence_low_risk_is_auto`
 - `backend/tests/test_decision_engine.py::test_invoice_under_threshold_is_auto`
 - `backend/tests/test_decision_engine.py::test_lead_always_auto_at_high_confidence`
@@ -45,6 +44,7 @@ _Date: 2026-07-19_
 - `backend/tests/test_decision_engine.py::test_low_confidence_requires_human`
 - `backend/tests/test_decision_engine.py::test_medium_confidence_requires_human`
 - `backend/tests/test_decision_engine.py::test_multiple_validation_errors_require_human`
+- `backend/tests/test_decision_engine.py::test_missing_critical_field_requires_human`
 
 ## Changelog
 
