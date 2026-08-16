@@ -1,6 +1,6 @@
 # Doc Quality Report
 
-_Date: 2026-08-09_
+_Date: 2026-08-16_
 
 ## README — 100/100 (good)
 
@@ -35,16 +35,16 @@ _Date: 2026-08-09_
 
 **Undocumented public functions (sample):**
 
-- `backend/tests/test_decision_engine.py::test_high_confidence_low_risk_is_auto`
-- `backend/tests/test_decision_engine.py::test_invoice_under_threshold_is_auto`
-- `backend/tests/test_decision_engine.py::test_lead_always_auto_at_high_confidence`
-- `backend/tests/test_decision_engine.py::test_payment_request_always_requires_human`
-- `backend/tests/test_decision_engine.py::test_high_value_invoice_requires_human`
-- `backend/tests/test_decision_engine.py::test_exact_threshold_does_not_trigger`
-- `backend/tests/test_decision_engine.py::test_low_confidence_requires_human`
-- `backend/tests/test_decision_engine.py::test_medium_confidence_requires_human`
-- `backend/tests/test_decision_engine.py::test_multiple_validation_errors_require_human`
-- `backend/tests/test_decision_engine.py::test_missing_critical_field_requires_human`
+- `backend/app/main.py::lifespan`
+- `backend/app/main.py::health_check`
+- `backend/app/schemas/schemas.py::validate_source`
+- `backend/app/schemas/schemas.py::validate_input`
+- `backend/app/services/audit_service.py::log`
+- `backend/app/services/audit_service.py::get_process_trail`
+- `backend/app/services/ai_service.py::classify`
+- `backend/app/services/ai_service.py::extract`
+- `backend/app/services/ai_service.py::get_mode`
+- `backend/app/core/logging_config.py::setup_logging`
 
 ## Changelog
 
