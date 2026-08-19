@@ -1,6 +1,6 @@
 # Dependency Report
 
-_Date: 2026-08-12_
+_Date: 2026-08-19_
 
 **Scanned:**
 
@@ -26,8 +26,8 @@ No known CVEs found.
 | `fastapi` | `0.104.1` | `0.141.1` |
 | `pydantic` | `2.5.0` | `2.13.4` |
 | `pydantic-settings` | `2.1.0` | `2.15.0` |
-| `anthropic` | `0.18.1` | `0.121.0` |
-| `python-dotenv` | `1.0.0` | `1.2.2` |
+| `anthropic` | `0.18.1` | `0.122.0` |
+| `python-dotenv` | `1.0.0` | `1.2.3` |
 | `httpx` | `0.25.2` | `0.28.1` |
 | `alembic` | `1.12.1` | `1.19.1` |
 | `pytest-mock` | `3.12.0` | `3.15.1` |
